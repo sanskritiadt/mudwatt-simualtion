@@ -3,185 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Electronic Vessel UI</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-        body {
-            background: #f5f5f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-        }
-
-        .setup {
-            position: relative;
-            width: 250px;
-            height: 420px;
-        }
-
-        /* Vessel */
-        .vessel {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 349px;
-            /* border: 4px solid #222; */
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            box-sizing: border-box;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        /* Labels */
-        .label {
-            position: absolute;
-            font-weight: bold;
-            /* background: rgba(255, 255, 255, 0.7); */
-            padding: 2px 5px;
-            border-radius: 4px;
-            font-size: 14px;
-            line-height: 1;
-        }
-
-        .label.vessel {
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .label.anode {
-            bottom: 25px;
-            left: 10px;
-        }
-
-        .label.soil {
-            bottom: 150px;
-            left: 10px;
-        }
-
-        .label.cathode {
-            bottom: 245px;
-            left: 10px;
-        }
-
-        .label.electronic {
-            top: -18px;
-            left: 95%;
-            transform: translateX(-50%);
-        }
-
-        /* Layers */
-        .layer {
-            width: 90%;
-            height: auto;
-        }
-
-        .anode {
-            position: absolute;
-            bottom: 11px;
-            height: 40px;
-            background: gray;
-            z-index: 2;
-            margin-left: 11px;
-            border-bottom-left-radius: 29px;
-            border-bottom-right-radius: 29px;
-        }
-
-        .soil {
-            position: absolute;
-            bottom: 55px;
-            height: 180px;
-            background: linear-gradient(to bottom, #9b5a25, #5c2d0a);
-            color: #fff;
-            z-index: 3;
-            margin-left: 11px;
-        }
-
-        .cathode {
-            position: absolute;
-            bottom: 240px;
-            height: 40px;
-            background: gray;
-            z-index: 4;
-            margin-left: 11px;
-        }
-
-        /* Wires */
-        .wire {
-            position: absolute;
-            width: 3px;
-            border-radius: 2px;
-        }
-
-        .wire.green {
-            left: 67px;
-            top: -50px;
-            height: 372px;
-            z-index: 5;
-        }
-
-        .wire.red {
-            right: 60px;
-            top: -34px;
-            height: 144px;
-            z-index: 5;
-        }
-
-        /* Bulb */
-        .bulb {
-            position: absolute;
-            top: -74px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            z-index: 10;
-        }
-
-        /* Bulb image styling */
-        #bulbImage {
-            height: 10vh;
-            width: 16vw;
-            transition: all 0.3s ease;
-        }
-
-        /* Glowing effect class */
-        #bulbImage.glow {
-            filter: brightness(1.8) saturate(1.5) drop-shadow(0 0 20px rgba(255, 200, 0, 0.8)) drop-shadow(0 0 40px rgba(255, 180, 0, 0.6));
-        }
-
-
-        .bulb .base {
-            width: 101px;
-            height: 20px;
-            /* background: #666; */
-            border-radius: 3px;
-            /* border: 2px solid #333; */
-            margin-top: 3px;
-        }
-
-        /* Static bacteria - always visible at anode */
-        .organism.static {
-            position: absolute;
-            width: 48px;
-            height: 72px;
-            opacity: 1;
-            z-index: 6;
-            bottom: 15px;
-            animation: staticFadeOut 3.5s ease-in forwards;
-            animation-delay: 0.5s;
-        }
-
-        .organism.static img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
+        /* All @keyframes animations remain unchanged */
         @keyframes staticFadeOut {
             0% {
                 opacity: 1;
@@ -197,24 +26,6 @@
                 opacity: 0;
                 visibility: hidden;
             }
-        }
-
-        /* Falling bacteria - drop from top to anode */
-        .organism.falling {
-            position: absolute;
-            width: 48px;
-            height: 72px;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 6;
-            top: 50px;
-            animation: dropToAnode 3s ease-in forwards;
-        }
-
-        .organism.falling img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
         }
 
         @keyframes dropToAnode {
@@ -243,60 +54,6 @@
             }
         }
 
-        /* Individual positioning for static organisms */
-        .organism.static:nth-child(1) {
-            left: 30px;
-        }
-
-        .organism.static:nth-child(2) {
-            left: 80px;
-        }
-
-        .organism.static:nth-child(3) {
-            left: 130px;
-        }
-
-        /* Individual positioning for falling organisms */
-        .organism.falling:nth-child(4) {
-            left: 50px;
-            animation-delay: 0.5s;
-        }
-
-        .organism.falling:nth-child(5) {
-            left: 100px;
-            animation-delay: 1s;
-        }
-
-        .organism.falling:nth-child(6) {
-            left: 150px;
-            animation-delay: 1.5s;
-        }
-
-        /* First H+ ions */
-        .ion {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ffd54f;
-            border-radius: 50%;
-            border: 2px solid #ffa000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 14px;
-            color: #ff6f00;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 6;
-            animation: fadeInAndOut 4s ease-in forwards;
-        }
-
-        .ion::before {
-            content: '+';
-            font-size: 16px;
-        }
-
         @keyframes fadeInAndOut {
             0% {
                 opacity: 0;
@@ -321,66 +78,6 @@
                 visibility: hidden;
                 transform: scale(0.8);
             }
-        }
-
-        .ion:nth-child(7) {
-            left: 40px;
-            top: 240px;
-            animation-delay: 6s;
-        }
-
-        .ion:nth-child(8) {
-            left: 90px;
-            top: 220px;
-            animation-delay: 6.4s;
-        }
-
-        .ion:nth-child(9) {
-            left: 140px;
-            top: 250px;
-            animation-delay: 6.8s;
-        }
-
-        .ion:nth-child(10) {
-            left: 65px;
-            top: 260px;
-            animation-delay: 7.2s;
-        }
-
-        .ion:nth-child(11) {
-            left: 115px;
-            top: 245px;
-            animation-delay: 7.6s;
-        }
-
-        .ion:nth-child(12) {
-            left: 165px;
-            top: 230px;
-            animation-delay: 8s;
-        }
-
-        /* First CO2 bubbles */
-        .co2 {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            background: rgba(200, 200, 200, 0.7);
-            border-radius: 50%;
-            border: 2px solid #999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 8px;
-            color: #333;
-            opacity: 0;
-            visibility: hidden;
-            z-index: 6;
-            animation: riseAndVanish 4s ease-out forwards;
-        }
-
-        .co2::before {
-            content: 'CO₂';
         }
 
         @keyframes riseAndVanish {
@@ -409,59 +106,6 @@
             }
         }
 
-        .co2:nth-child(13) {
-            left: 50px;
-            animation-delay: 6s;
-        }
-
-        .co2:nth-child(14) {
-            left: 100px;
-            animation-delay: 6.4s;
-        }
-
-        .co2:nth-child(15) {
-            left: 150px;
-            animation-delay: 6.8s;
-        }
-
-        .co2:nth-child(16) {
-            left: 75px;
-            animation-delay: 7.2s;
-        }
-
-        .co2:nth-child(17) {
-            left: 125px;
-            animation-delay: 7.6s;
-        }
-
-        .co2:nth-child(18) {
-            left: 175px;
-            animation-delay: 8s;
-        }
-
-        /* Electron ions on wire */
-        .electron {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: #8b7ac0;
-            border-radius: 50%;
-            border: 2px solid #56459d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 12px;
-            color: white;
-            z-index: 11;
-            opacity: 0;
-            animation: electronAppearAndVanish 4s ease-in forwards;
-        }
-
-        .electron::before {
-            content: '-';
-        }
-
         @keyframes electronAppearAndVanish {
             0% {
                 opacity: 0;
@@ -482,92 +126,6 @@
                 opacity: 0;
                 transform: scale(0.8);
             }
-        }
-
-        .e1 {
-            left: 58px;
-            bottom: 30px;
-            animation-delay: 11s;
-        }
-
-        .e2 {
-            left: 58px;
-            bottom: 80px;
-            animation-delay: 11.3s;
-        }
-
-        .e3 {
-            left: 58px;
-            bottom: 130px;
-            animation-delay: 11.6s;
-        }
-
-        .e4 {
-            left: 58px;
-            bottom: 180px;
-            animation-delay: 11.9s;
-        }
-
-        .e5 {
-            left: 58px;
-            bottom: 230px;
-            animation-delay: 12.2s;
-        }
-
-        .e6 {
-            left: 58px;
-            bottom: 280px;
-            animation-delay: 12.5s;
-        }
-
-        .e7 {
-            left: 58px;
-            top: 10px;
-            animation-delay: 12.8s;
-        }
-
-        .e8 {
-            left: 100px;
-            top: -50px;
-            animation-delay: 13.1s;
-        }
-
-        .e9 {
-            left: 145px;
-            top: -50px;
-            animation-delay: 13.4s;
-        }
-
-        .e10 {
-            right: 58px;
-            top: 10px;
-            animation-delay: 13.7s;
-        }
-
-        .e11 {
-            right: 58px;
-            bottom: 280px;
-            animation-delay: 14s;
-        }
-
-        .e12 {
-            right: 58px;
-            bottom: 230px;
-            animation-delay: 14.3s;
-        }
-
-        /* Flow arrows */
-        .flow-arrow {
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 15px solid #e9a129;
-            z-index: 12;
-            opacity: 0;
-            visibility: hidden;
-            animation: arrowFlowAndVanish 6.5s ease-in-out forwards;
         }
 
         @keyframes arrowFlowAndVanish {
@@ -597,187 +155,6 @@
             }
         }
 
-        .arrow1 {
-            left: 62px;
-            bottom: 150px;
-            animation-delay: 11s;
-        }
-
-        .arrow2 {
-            left: 62px;
-            top: 50px;
-            animation-delay: 11.5s;
-        }
-
-        .arrow3 {
-            left: 62px;
-            top: -30px;
-            animation-delay: 12s;
-        }
-
-        .arrow4 {
-            left: 120px;
-            top: -60px;
-            transform: rotate(90deg);
-            animation-delay: 12.5s;
-        }
-
-        .arrow5 {
-            right: 62px;
-            top: -30px;
-            transform: rotate(180deg);
-            animation-delay: 13s;
-        }
-
-        .arrow6 {
-            right: 62px;
-            bottom: 280px;
-            transform: rotate(180deg);
-            animation-delay: 13.5s;
-        }
-
-        /* e- at cathode */
-        .cathode-electron {
-            position: absolute;
-            width: 18px;
-            height: 18px;
-            background: #ff1744;
-            border-radius: 50%;
-            border: 2px solid #c51162;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 11px;
-            color: white;
-            z-index: 7;
-            opacity: 0;
-            animation: fadeInAndVanish 3s ease-in forwards;
-        }
-
-        .cathode-electron::before {
-            content: '-';
-            font-size: 19px;
-        }
-
-        .ce1 {
-            left: 30px;
-            top: 60px;
-            animation-delay: 17s;
-        }
-
-        .ce2 {
-            left: 60px;
-            top: 65px;
-            animation-delay: 17.2s;
-        }
-
-        .ce3 {
-            left: 90px;
-            top: 60px;
-            animation-delay: 17.4s;
-        }
-
-        .ce4 {
-            left: 120px;
-            top: 65px;
-            animation-delay: 17.6s;
-        }
-
-        .ce5 {
-            left: 150px;
-            top: 60px;
-            animation-delay: 17.8s;
-        }
-
-        .ce6 {
-            left: 180px;
-            top: 65px;
-            animation-delay: 18s;
-        }
-
-        /* O2 ions */
-        /* O2 ions */
-        .o2-ion {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #a9e5c8;
-            border-radius: 50%;
-            border: 2px solid #8bbabf;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 13px;
-            color: white;
-            z-index: 7;
-            opacity: 0;
-            visibility: hidden;
-            /* ADDED */
-            animation: fadeInAndVanishO2 3s ease-in forwards;
-            /* CHANGED */
-        }
-
-
-        .o2-ion::before {
-            content: 'O₂';
-            font-size: 12px;
-        }
-
-        .o2-1 {
-            left: 45px;
-            top: 25px;
-            animation-delay: 17.2s;
-        }
-
-        .o2-2 {
-            left: 80px;
-            top: 30px;
-            animation-delay: 17.5s;
-        }
-
-        .o2-3 {
-            left: 115px;
-            top: 25px;
-            animation-delay: 17.8s;
-        }
-
-        .o2-4 {
-            left: 150px;
-            top: 30px;
-            animation-delay: 18.1s;
-        }
-
-        .o2-5 {
-            left: 185px;
-            top: 25px;
-            animation-delay: 18.4s;
-        }
-
-        /* Second H+ ions */
-        .h-plus-new {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ffd54f;
-            border-radius: 50%;
-            border: 2px solid #ffa000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 10px;
-            color: #ff6f00;
-            opacity: 0;
-            z-index: 7;
-            animation: riseUpAndVanish 4s ease-out forwards;
-        }
-
-        .h-plus-new::before {
-            content: '+';
-        }
-
         @keyframes fadeInAndVanishO2 {
             0% {
                 opacity: 0;
@@ -804,7 +181,6 @@
             }
         }
 
-
         @keyframes riseUpAndVanish {
             0% {
                 opacity: 1;
@@ -825,44 +201,6 @@
                 opacity: 0;
                 top: 80px;
             }
-        }
-
-        .hp1 {
-            left: 40px;
-            animation-delay: 19s;
-        }
-
-        .hp2 {
-            left: 75px;
-            animation-delay: 19.3s;
-        }
-
-        .hp3 {
-            left: 110px;
-            animation-delay: 19.6s;
-        }
-
-        .hp4 {
-            left: 145px;
-            animation-delay: 19.9s;
-        }
-
-        .hp5 {
-            left: 180px;
-            animation-delay: 20.2s;
-        }
-
-        /* Water droplets */
-        .water-droplet {
-            position: absolute;
-            width: 12px;
-            height: 16px;
-            background: #2196f3;
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            opacity: 0;
-            z-index: 7;
-            animation: dropletFallAndVanish 4s ease-in forwards;
         }
 
         @keyframes dropletFallAndVanish {
@@ -887,89 +225,6 @@
             }
         }
 
-        .wd1 {
-            left: 35px;
-            animation-delay: 19s;
-        }
-
-        .wd2 {
-            left: 70px;
-            animation-delay: 19.2s;
-        }
-
-        .wd3 {
-            left: 105px;
-            animation-delay: 19.4s;
-        }
-
-        .wd4 {
-            left: 140px;
-            animation-delay: 19.6s;
-        }
-
-        .wd5 {
-            left: 175px;
-            animation-delay: 19.8s;
-        }
-
-        .wd6 {
-            left: 55px;
-            animation-delay: 20s;
-        }
-
-        /* Final CO2 bubbles */
-        .co2-final {
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            background: rgba(200, 200, 200, 0.7);
-            border-radius: 50%;
-            border: 2px solid #999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 8px;
-            color: #333;
-            opacity: 0;
-            z-index: 7;
-            animation: riseAndVanish 4s ease-out forwards;
-        }
-
-        .co2-final::before {
-            content: 'CO₂';
-        }
-
-        .co2f1 {
-            left: 50px;
-            animation-delay: 24s;
-        }
-
-        .co2f2 {
-            left: 90px;
-            animation-delay: 24.3s;
-        }
-
-        .co2f3 {
-            left: 130px;
-            animation-delay: 24.6s;
-        }
-
-        .co2f4 {
-            left: 170px;
-            animation-delay: 24.9s;
-        }
-
-        /* Revolving cycle arrows */
-        .cycle-arrow {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            opacity: 0;
-            z-index: 8;
-            animation: cycleArrowAppear 1.5s ease-in forwards;
-        }
-
         @keyframes cycleArrowAppear {
             0% {
                 opacity: 0;
@@ -982,71 +237,462 @@
             }
         }
 
+        /* Custom classes for animations */
+        .organism.static {
+            animation: staticFadeOut 3.5s ease-in forwards;
+            animation-delay: 0.5s;
+        }
+
+        .organism.falling {
+            animation: dropToAnode 3s ease-in forwards;
+        }
+
+        .ion {
+            animation: fadeInAndOut 4s ease-in forwards;
+        }
+
+        .co2,
+        .co2-final {
+            animation: riseAndVanish 4s ease-out forwards;
+        }
+
+        .electron {
+            animation: electronAppearAndVanish 4s ease-in forwards;
+        }
+
+        .flow-arrow {
+            animation: arrowFlowAndVanish 6.5s ease-in-out forwards;
+        }
+
+        .o2-ion {
+            animation: fadeInAndVanishO2 3s ease-in forwards;
+        }
+
+        .h-plus-new {
+            animation: riseUpAndVanish 4s ease-out forwards;
+        }
+
+        .water-droplet {
+            animation: dropletFallAndVanish 4s ease-in forwards;
+        }
+
+        .cycle-arrow {
+            animation: cycleArrowAppear 1.5s ease-in forwards;
+        }
+
+        /* Bulb glow effect */
+        #bulbImage.glow {
+            filter: brightness(1.8) saturate(1.5) drop-shadow(0 0 20px rgba(255, 200, 0, 0.8)) drop-shadow(0 0 40px rgba(255, 180, 0, 0.6));
+        }
+
+        /* Animation delays for specific elements */
+        .organism.falling:nth-child(4) {
+            animation-delay: 0.5s;
+        }
+
+        .organism.falling:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .organism.falling:nth-child(6) {
+            animation-delay: 1.5s;
+        }
+
+        .ion:nth-child(7) {
+            animation-delay: 6s;
+        }
+
+        .ion:nth-child(8) {
+            animation-delay: 6.4s;
+        }
+
+        .ion:nth-child(9) {
+            animation-delay: 6.8s;
+        }
+
+        .ion:nth-child(10) {
+            animation-delay: 7.2s;
+        }
+
+        .ion:nth-child(11) {
+            animation-delay: 7.6s;
+        }
+
+        .ion:nth-child(12) {
+            animation-delay: 8s;
+        }
+
+        .co2:nth-child(13) {
+            animation-delay: 6s;
+        }
+
+        .co2:nth-child(14) {
+            animation-delay: 6.4s;
+        }
+
+        .co2:nth-child(15) {
+            animation-delay: 6.8s;
+        }
+
+        .co2:nth-child(16) {
+            animation-delay: 7.2s;
+        }
+
+        .co2:nth-child(17) {
+            animation-delay: 7.6s;
+        }
+
+        .co2:nth-child(18) {
+            animation-delay: 8s;
+        }
+
+        .e1 {
+            animation-delay: 11s;
+        }
+
+        .e2 {
+            animation-delay: 11.3s;
+        }
+
+        .e3 {
+            animation-delay: 11.6s;
+        }
+
+        .e4 {
+            animation-delay: 11.9s;
+        }
+
+        .e5 {
+            animation-delay: 12.2s;
+        }
+
+        .e6 {
+            animation-delay: 12.5s;
+        }
+
+        .e7 {
+            animation-delay: 12.8s;
+        }
+
+        .e8 {
+            animation-delay: 13.1s;
+        }
+
+        .e9 {
+            animation-delay: 13.4s;
+        }
+
+        .e10 {
+            animation-delay: 13.7s;
+        }
+
+        .e11 {
+            animation-delay: 14s;
+        }
+
+        .e12 {
+            animation-delay: 14.3s;
+        }
+
+        .arrow1 {
+            animation-delay: 11s;
+        }
+
+        .arrow2 {
+            animation-delay: 11.5s;
+        }
+
+        .arrow3 {
+            animation-delay: 12s;
+        }
+
+        .arrow4 {
+            animation-delay: 12.5s;
+        }
+
+        .arrow5 {
+            animation-delay: 13s;
+        }
+
+        .arrow6 {
+            animation-delay: 13.5s;
+        }
+
+        .ce1 {
+            animation-delay: 17s;
+        }
+
+        .ce2 {
+            animation-delay: 17.2s;
+        }
+
+        .ce3 {
+            animation-delay: 17.4s;
+        }
+
+        .ce4 {
+            animation-delay: 17.6s;
+        }
+
+        .ce5 {
+            animation-delay: 17.8s;
+        }
+
+        .ce6 {
+            animation-delay: 18s;
+        }
+
+        .o2-1 {
+            animation-delay: 17.2s;
+        }
+
+        .o2-2 {
+            animation-delay: 17.5s;
+        }
+
+        .o2-3 {
+            animation-delay: 17.8s;
+        }
+
+        .o2-4 {
+            animation-delay: 18.1s;
+        }
+
+        .o2-5 {
+            animation-delay: 18.4s;
+        }
+
+        .hp1 {
+            animation-delay: 19s;
+        }
+
+        .hp2 {
+            animation-delay: 19.3s;
+        }
+
+        .hp3 {
+            animation-delay: 19.6s;
+        }
+
+        .hp4 {
+            animation-delay: 19.9s;
+        }
+
+        .hp5 {
+            animation-delay: 20.2s;
+        }
+
+        .wd1 {
+            animation-delay: 19s;
+        }
+
+        .wd2 {
+            animation-delay: 19.2s;
+        }
+
+        .wd3 {
+            animation-delay: 19.4s;
+        }
+
+        .wd4 {
+            animation-delay: 19.6s;
+        }
+
+        .wd5 {
+            animation-delay: 19.8s;
+        }
+
+        .wd6 {
+            animation-delay: 20s;
+        }
+
+        .co2f1 {
+            animation-delay: 24s;
+        }
+
+        .co2f2 {
+            animation-delay: 24.3s;
+        }
+
+        .co2f3 {
+            animation-delay: 24.6s;
+        }
+
+        .co2f4 {
+            animation-delay: 24.9s;
+        }
+
         .cycle-arrow.left {
-            left: 77px;
-            top: 206px;
             animation-delay: 24s;
         }
 
         .cycle-arrow.right {
-            right: 102px;
-            top: 198px;
             animation-delay: 24.5s;
         }
 
-        .cycle-arrow svg {
+        .custom-img {
             width: 100%;
-            height: 100%;
+            max-width: 210%;
+            height: auto;
+        }
+
+        /* Responsive container scaling - maintains layout proportions */
+        @media (max-width: 480px) {
+            .setup {
+                transform: scale(0.6);
+                transform-origin: center center;
+            }
+        }
+
+        @media (min-width: 481px) and (max-width: 640px) {
+            .setup {
+                transform: scale(0.7);
+                transform-origin: center center;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .setup {
+                transform: scale(0.8);
+                transform-origin: center center;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .setup {
+                transform: scale(0.9);
+                transform-origin: center center;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            .setup {
+                transform: scale(1);
+                transform-origin: center center;
+            }
+        }
+
+        @media (min-width: 1281px) {
+            .setup {
+                transform: scale(1.1);
+                transform-origin: center center;
+            }
+        }
+
+        /* Container base styles - responsive scaling */
+        .setup {
+            max-width: 100vw;
+            max-height: 100vh;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Handle landscape orientation on mobile */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .setup {
+                transform: scale(0.65);
+                transform-origin: center center;
+            }
         }
     </style>
 </head>
 
-<body>
-    <div class="setup">
-        <div class="bulb">
-            <img id="bulbImage" src="assest/bulb imgae.png">
-            <div class="base">
-                <img src="assest\electronic base1.png"
-                    style="height: 6vh; margin-top: -22px; margin-left: 13px; border-radius:  23px 23px ;">
+<body class="bg-gray-100 flex justify-center items-center min-h-screen font-sans px-2 sm:px-4 overflow-x-hidden w-full">
+    <div class="setup relative w-[250px] h-[420px]">
+        <!-- Bulb -->
+        <div class="bulb absolute -top-[74px] left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
+            <img id="bulbImage" src="assest/bulb imgae.png" class="h-[10vh] w-[16vw] transition-all duration-300">
+            <div class="base w-[101px] h-5 rounded-sm mt-1">
+                <img src="assest/electronic base1.png" class="h-[6vh] -mt-[22px] ml-[13px] rounded-[23px]">
             </div>
-            <img src="assest/green wire straight line.png" style="height: 14px; margin-top: -43px; margin-left: -63px;">
-            <img src="assest/red-wire straight line.png" style="height: 8px; margin-top: -10px; margin-left: 66px;">
+            <img src="assest/green wire straight line.png" class="h-[14px] -mt-[43px] -ml-[58px]">
+            <img src="assest/red-wire straight line.png" class="h-2 -mt-[10px] ml-[66px]">
         </div>
 
-        <span class="label electronic">Electronic Layer</span>
+        <span
+            class="label electronic absolute -top-[18px] left-[95%] -translate-x-1/2 font-bold px-[5px] py-0.5 rounded text-sm">Electronic
+            Layer</span>
 
-        <div class="wire green">
-            <img src="assest/green wire.png" style="height: 72vh; margin-left: -79px;">
+        <!-- Wires -->
+        <div class="wire green absolute left-[67px] -top-[52px] h-[372px] z-[5]">
+            <img src="assest/green wire.png" class="h-[77vh] -ml-[49px]">
         </div>
-        <div class="wire red">
-            <img src="assest/red-wire.png" style="height: 29vh; margin-left: -38px;">
+        <div class="wire red absolute right-[39px] -top-[37px] h-[144px] z-[5]">
+            <img src="assest/red-wire.png" class="h-[32vh] -ml-[3px]">
         </div>
 
         <!-- Circuit electrons -->
-        <div class="electron e1"></div>
-        <div class="electron e2"></div>
-        <div class="electron e3"></div>
-        <div class="electron e4"></div>
-        <div class="electron e5"></div>
-        <div class="electron e6"></div>
-        <div class="electron e7"></div>
-        <div class="electron e8"></div>
-        <div class="electron e9"></div>
-        <div class="electron e10"></div>
-        <div class="electron e11"></div>
-        <div class="electron e12"></div>
+        <div
+            class="electron e1 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[58px] bottom-[30px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e2 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[58px] bottom-[80px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e3 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[58px] bottom-[130px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e4 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[58px] bottom-[180px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e5 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[58px] bottom-[230px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e6 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[58px] bottom-[280px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e7 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[58px] top-[10px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e8 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[100px] -top-[50px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e9 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 left-[145px] -top-[50px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e10 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 right-[58px] top-[10px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e11 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 right-[58px] bottom-[280px]">
+            <span>-</span>
+        </div>
+        <div
+            class="electron e12 absolute w-[18px] h-[18px] bg-[#8b7ac0] rounded-full border-2 border-[#56459d] flex items-center justify-center font-bold text-xs text-white z-[11] opacity-0 right-[58px] bottom-[230px]">
+            <span>-</span>
+        </div>
 
         <!-- Flow arrows -->
-        <div class="flow-arrow arrow1"></div>
-        <div class="flow-arrow arrow2"></div>
-        <div class="flow-arrow arrow3"></div>
-        <div class="flow-arrow arrow4"></div>
-        <div class="flow-arrow arrow5"></div>
-        <div class="flow-arrow arrow6"></div>
+        <div
+            class="flow-arrow arrow1 absolute w-0 h-0 border-l-[8px] border-r-[8px] border-b-[15px] border-l-transparent border-r-transparent border-b-[#e9a129] z-[12] opacity-0 invisible left-[62px] bottom-[150px]">
+        </div>
+        <div
+            class="flow-arrow arrow2 absolute w-0 h-0 border-l-[8px] border-r-[8px] border-b-[15px] border-l-transparent border-r-transparent border-b-[#e9a129] z-[12] opacity-0 invisible left-[62px] top-[50px]">
+        </div>
+        <div
+            class="flow-arrow arrow3 absolute w-0 h-0 border-l-[8px] border-r-[8px] border-b-[15px] border-l-transparent border-r-transparent border-b-[#e9a129] z-[12] opacity-0 invisible left-[62px] -top-[30px]">
+        </div>
+        <div
+            class="flow-arrow arrow4 absolute w-0 h-0 border-l-[8px] border-r-[8px] border-b-[15px] border-l-transparent border-r-transparent border-b-[#e9a129] z-[12] opacity-0 invisible left-[120px] -top-[60px] rotate-90">
+        </div>
+        <div
+            class="flow-arrow arrow5 absolute w-0 h-0 border-l-[8px] border-r-[8px] border-b-[15px] border-l-transparent border-r-transparent border-b-[#e9a129] z-[12] opacity-0 invisible right-[62px] -top-[30px] rotate-180">
+        </div>
+        <div
+            class="flow-arrow arrow6 absolute w-0 h-0 border-l-[8px] border-r-[8px] border-b-[15px] border-l-transparent border-r-transparent border-b-[#e9a129] z-[12] opacity-0 invisible right-[62px] bottom-[280px] rotate-180">
+        </div>
 
         <!-- Cycle arrows -->
-        <div class="cycle-arrow left">
-            <svg viewBox="0 0 100 100">
+        <div class="cycle-arrow left absolute w-[60px] h-[60px] opacity-0 z-[8] left-[77px] top-[206px]">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
                 <path d="M 20 80 Q 10 50 20 20" stroke="#00bcd4" stroke-width="4" fill="none"
                     marker-end="url(#arrowhead-left)" />
                 <defs>
@@ -1057,8 +703,8 @@
             </svg>
         </div>
 
-        <div class="cycle-arrow right">
-            <svg viewBox="0 0 100 100">
+        <div class="cycle-arrow right absolute w-[60px] h-[60px] opacity-0 z-[8] right-[102px] top-[198px]">
+            <svg viewBox="0 0 100 100" class="w-full h-full">
                 <path d="M 80 20 Q 90 50 80 80" stroke="#00bcd4" stroke-width="4" fill="none"
                     marker-end="url(#arrowhead-right)" />
                 <defs>
@@ -1069,81 +715,202 @@
             </svg>
         </div>
 
-        <h3 style="margin-top: 15rem; margin-left: -3rem;">Soil</h3>
-        <h3 style="margin-top: -8rem; margin-left: -5rem;">Cathode</h3>
-        <h3 style="margin-top: 13rem; margin-left: -4rem;">Anode</h3>
+        <!-- Labels -->
+        <h3 class="mt-60 -ml-12 text-base font-bold">Soil</h3>
+        <h3 class="-mt-32 -ml-20 text-base font-bold">Cathode</h3>
+        <h3 class="mt-52 -ml-16 text-base font-bold">Anode</h3>
 
-        <div class="vessel">
-            <img src="assest\empty vessel.png"
-                style="height: 64vh;width: 37vw; margin-left: -130px; margin-top: -41px;">
+        <!-- Vessel -->
+        <div
+            class="vessel absolute bottom-0 w-full h-[349px] rounded-[20px] bg-white/30 box-border overflow-hidden z-[1]">
+            <img src="assest/empty vessel.png" class="h-[69vh] w-[37vw] -ml-[130px] -mt-[41px] custom-img">
+
             <!-- Static bacteria already at anode -->
-            <div class="organism static"><img src="assest/bacteria.png"></div>
-            <div class="organism static"><img src="assest/bacteria.png"></div>
-            <div class="organism static"><img src="assest/bacteria.png"></div>
-            
+            <div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[30px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
+            <div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[80px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
+            <div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[130px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
 
             <!-- Falling bacteria that drop to anode -->
-            <div class="organism falling"><img src="assest/bacteria.png"></div>
-            <div class="organism falling"><img src="assest/bacteria.png"></div>
-            <div class="organism falling"><img src="assest/bacteria.png"></div>
+            <div class="organism falling absolute w-12 h-[72px] opacity-0 invisible z-[6] top-[50px] left-[50px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
+            <div class="organism falling absolute w-12 h-[72px] opacity-0 invisible z-[6] top-[50px] left-[100px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
+            <div class="organism falling absolute w-12 h-[72px] opacity-0 invisible z-[6] top-[50px] left-[150px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
 
             <!-- First H+ ions -->
-            <div class="ion"></div>
-            <div class="ion"></div>
-            <div class="ion"></div>
-            <div class="ion"></div>
-            <div class="ion"></div>
-            <div class="ion"></div>
+            <!-- <div
+                class="ion absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-sm text-[#ff6f00] opacity-0 invisible z-[6] left-[40px] top-[240px]">
+                <span class="text-base">+</span>
+            </div> -->
+            <div
+                class="ion absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-sm text-[#ff6f00] opacity-0 invisible z-[6] left-[90px] top-[220px]">
+                <span class="text-base">+</span>
+            </div>
+            <div
+                class="ion absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-sm text-[#ff6f00] opacity-0 invisible z-[6] left-[140px] top-[250px]">
+                <span class="text-base">+</span>
+            </div>
+            <div
+                class="ion absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-sm text-[#ff6f00] opacity-0 invisible z-[6] left-[65px] top-[260px]">
+                <span class="text-base">+</span>
+            </div>
+            <div
+                class="ion absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-sm text-[#ff6f00] opacity-0 invisible z-[6] left-[115px] top-[245px]">
+                <span class="text-base">+</span>
+            </div>
+            <div
+                class="ion absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-sm text-[#ff6f00] opacity-0 invisible z-[6] left-[165px] top-[230px]">
+                <span class="text-base">+</span>
+            </div>
 
             <!-- First CO2 bubbles -->
-            <!-- <div class="co2"></div> -->
-            <div class="co2"></div>
-            <div class="co2"></div>
-            <div class="co2"></div>
-            <div class="co2"></div>
-            <div class="co2"></div>
+            <div
+                class="co2 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 invisible z-[6] left-[100px]">
+                <span>CO₂</span>
+            </div>
+            <div
+                class="co2 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 invisible z-[6] left-[150px]">
+                <span>CO₂</span>
+            </div>
+            <div
+                class="co2 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 invisible z-[6] left-[75px]">
+                <span>CO₂</span>
+            </div>
+            <div
+                class="co2 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 invisible z-[6] left-[125px]">
+                <span>CO₂</span>
+            </div>
+            <div
+                class="co2 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 invisible z-[6] left-[175px]">
+                <span>CO₂</span>
+            </div>
 
             <!-- e- at cathode -->
-            <div class="cathode-electron ce1"></div>
-            <div class="cathode-electron ce2"></div>
-            <div class="cathode-electron ce3"></div>
-            <div class="cathode-electron ce4"></div>
-            <div class="cathode-electron ce5"></div>
-            <div class="cathode-electron ce6"></div>
+            <div
+                class="cathode-electron ce1 absolute w-[18px] h-[18px] bg-[#ff1744] rounded-full border-2 border-[#c51162] flex items-center justify-center font-bold text-[11px] text-white z-[7] opacity-0 left-[30px] top-[60px]">
+                <span class="text-[19px]">-</span>
+            </div>
+            <div
+                class="cathode-electron ce2 absolute w-[18px] h-[18px] bg-[#ff1744] rounded-full border-2 border-[#c51162] flex items-center justify-center font-bold text-[11px] text-white z-[7] opacity-0 left-[60px] top-[65px]">
+                <span class="text-[19px]">-</span>
+            </div>
+            <div
+                class="cathode-electron ce3 absolute w-[18px] h-[18px] bg-[#ff1744] rounded-full border-2 border-[#c51162] flex items-center justify-center font-bold text-[11px] text-white z-[7] opacity-0 left-[90px] top-[60px]">
+                <span class="text-[19px]">-</span>
+            </div>
+            <div
+                class="cathode-electron ce4 absolute w-[18px] h-[18px] bg-[#ff1744] rounded-full border-2 border-[#c51162] flex items-center justify-center font-bold text-[11px] text-white z-[7] opacity-0 left-[120px] top-[65px]">
+                <span class="text-[19px]">-</span>
+            </div>
+            <div
+                class="cathode-electron ce5 absolute w-[18px] h-[18px] bg-[#ff1744] rounded-full border-2 border-[#c51162] flex items-center justify-center font-bold text-[11px] text-white z-[7] opacity-0 left-[150px] top-[60px]">
+                <span class="text-[19px]">-</span>
+            </div>
+            <div
+                class="cathode-electron ce6 absolute w-[18px] h-[18px] bg-[#ff1744] rounded-full border-2 border-[#c51162] flex items-center justify-center font-bold text-[11px] text-white z-[7] opacity-0 left-[180px] top-[65px]">
+                <span class="text-[19px]">-</span>
+            </div>
 
             <!-- O2 ions -->
-            <div class="o2-ion o2-1"></div>
-            <div class="o2-ion o2-2"></div>
-            <div class="o2-ion o2-3"></div>
-            <div class="o2-ion o2-4"></div>
-            <div class="o2-ion o2-5"></div>
+            <div
+                class="o2-ion o2-1 absolute w-5 h-5 bg-[#a9e5c8] rounded-full border-2 border-[#8bbabf] flex items-center justify-center font-bold text-[13px] text-white z-[7] opacity-0 invisible left-[45px] top-[25px]">
+                <span class="text-xs">O₂</span>
+            </div>
+            <div
+                class="o2-ion o2-2 absolute w-5 h-5 bg-[#a9e5c8] rounded-full border-2 border-[#8bbabf] flex items-center justify-center font-bold text-[13px] text-white z-[7] opacity-0 invisible left-[80px] top-[30px]">
+                <span class="text-xs">O₂</span>
+            </div>
+            <div
+                class="o2-ion o2-3 absolute w-5 h-5 bg-[#a9e5c8] rounded-full border-2 border-[#8bbabf] flex items-center justify-center font-bold text-[13px] text-white z-[7] opacity-0 invisible left-[115px] top-[25px]">
+                <span class="text-xs">O₂</span>
+            </div>
+            <div
+                class="o2-ion o2-4 absolute w-5 h-5 bg-[#a9e5c8] rounded-full border-2 border-[#8bbabf] flex items-center justify-center font-bold text-[13px] text-white z-[7] opacity-0 invisible left-[150px] top-[30px]">
+                <span class="text-xs">O₂</span>
+            </div>
+            <div
+                class="o2-ion o2-5 absolute w-5 h-5 bg-[#a9e5c8] rounded-full border-2 border-[#8bbabf] flex items-center justify-center font-bold text-[13px] text-white z-[7] opacity-0 invisible left-[185px] top-[25px]">
+                <span class="text-xs">O₂</span>
+            </div>
 
             <!-- Second H+ ions -->
-            <div class="h-plus-new hp1"></div>
-            <div class="h-plus-new hp2"></div>
-            <div class="h-plus-new hp3"></div>
-            <div class="h-plus-new hp4"></div>
-            <div class="h-plus-new hp5"></div>
+            <div
+                class="h-plus-new hp1 absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-[10px] text-[#ff6f00] opacity-0 z-[7] left-[40px]">
+                <span>+</span>
+            </div>
+            <div
+                class="h-plus-new hp2 absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-[10px] text-[#ff6f00] opacity-0 z-[7] left-[75px]">
+                <span>+</span>
+            </div>
+            <div
+                class="h-plus-new hp3 absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-[10px] text-[#ff6f00] opacity-0 z-[7] left-[110px]">
+                <span>+</span>
+            </div>
+            <div
+                class="h-plus-new hp4 absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-[10px] text-[#ff6f00] opacity-0 z-[7] left-[145px]">
+                <span>+</span>
+            </div>
+            <div
+                class="h-plus-new hp5 absolute w-5 h-5 bg-[#ffd54f] rounded-full border-2 border-[#ffa000] flex items-center justify-center font-bold text-[10px] text-[#ff6f00] opacity-0 z-[7] left-[180px]">
+                <span>+</span>
+            </div>
 
             <!-- Water droplets -->
-            <div class="water-droplet wd1"></div>
-            <div class="water-droplet wd2"></div>
-            <div class="water-droplet wd3"></div>
-            <div class="water-droplet wd4"></div>
-            <div class="water-droplet wd5"></div>
-            <div class="water-droplet wd6"></div>
+            <div
+                class="water-droplet wd1 absolute w-3 h-4 bg-blue-500 rounded-tl-[50%] rounded-tr-[50%] rounded-br-[50%] -rotate-45 opacity-0 z-[7] left-[35px]">
+            </div>
+            <div
+                class="water-droplet wd2 absolute w-3 h-4 bg-blue-500 rounded-tl-[50%] rounded-tr-[50%] rounded-br-[50%] -rotate-45 opacity-0 z-[7] left-[70px]">
+            </div>
+            <div
+                class="water-droplet wd3 absolute w-3 h-4 bg-blue-500 rounded-tl-[50%] rounded-tr-[50%] rounded-br-[50%] -rotate-45 opacity-0 z-[7] left-[105px]">
+            </div>
+            <div
+                class="water-droplet wd4 absolute w-3 h-4 bg-blue-500 rounded-tl-[50%] rounded-tr-[50%] rounded-br-[50%] -rotate-45 opacity-0 z-[7] left-[140px]">
+            </div>
+            <div
+                class="water-droplet wd5 absolute w-3 h-4 bg-blue-500 rounded-tl-[50%] rounded-tr-[50%] rounded-br-[50%] -rotate-45 opacity-0 z-[7] left-[175px]">
+            </div>
+            <div
+                class="water-droplet wd6 absolute w-3 h-4 bg-blue-500 rounded-tl-[50%] rounded-tr-[50%] rounded-br-[50%] -rotate-45 opacity-0 z-[7] left-[55px]">
+            </div>
 
             <!-- Final CO2 -->
-            <div class="co2-final co2f1"></div>
-            <div class="co2-final co2f2"></div>
-            <div class="co2-final co2f3"></div>
-            <div class="co2-final co2f4"></div>
-
-            <div class="layer anode"></div>
-            <div class="layer soil">
-                <img src="assest/Gemini_Generated_Image_1keb811keb811keb.png" style="height: 28vh; width: 16.5vw;">
+            <div
+                class="co2-final co2f1 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 z-[7] left-[50px]">
+                <span>CO₂</span>
             </div>
-            <div class="layer cathode"></div>
+            <div
+                class="co2-final co2f2 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 z-[7] left-[90px]">
+                <span>CO₂</span>
+            </div>
+            <div
+                class="co2-final co2f3 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 z-[7] left-[130px]">
+                <span>CO₂</span>
+            </div>
+            <div
+                class="co2-final co2f4 absolute w-[22px] h-[22px] bg-gray-400/70 rounded-full border-2 border-gray-500 flex items-center justify-center font-bold text-[8px] text-gray-700 opacity-0 z-[7] left-[170px]">
+                <span>CO₂</span>
+            </div>
+
+            <!-- Layers -->
+            <div class="layer anode absolute bottom-[11px] h-10 bg-gray-500 z-[2] ml-[11px] w-[90%] rounded-b-[29px]">
+            </div>
+            <div
+                class="layer soil absolute bottom-[55px] h-[180px] bg-gradient-to-b from-[#9b5a25] to-[#5c2d0a] text-white z-[3] ml-[11px] w-[90%]">
+                <img src="assest/Gemini_Generated_Image_1keb811keb811keb.png" class="h-[30vh] w-[16.5vw]">
+            </div>
+            <div class="layer cathode absolute bottom-[240px] h-10 bg-gray-500 z-[4] ml-[11px] w-[90%]"></div>
         </div>
     </div>
 
@@ -1155,7 +922,7 @@
         setTimeout(() => {
             blinkInterval = setInterval(() => {
                 bulbImage.classList.toggle('glow');
-            }, 600);  // Faster blinking - change this value to adjust speed
+            }, 600);
         }, 13500);
 
         // Stop blinking when all animations finish at 28s
@@ -1164,7 +931,6 @@
             bulbImage.classList.remove('glow');
         }, 28000);
     </script>
-
 </body>
 
 </html>
