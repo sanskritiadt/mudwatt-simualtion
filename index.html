@@ -585,9 +585,9 @@
                 height:1.3rem !important;
             }
             .red-wire-element {
-                top: -36.5px !important;
+                top: -33.5px !important;
                 right: -96px !important;
-                height: 178px !important;
+                height: 180px !important;
             }
             .electronic-base-img {
                 margin-left: 84px !important;
@@ -601,6 +601,16 @@
                 height: 20vh !important;
                 margin-left: 10rem !important;
             }
+            .green-wire-element {
+                height: 533px !important;
+                width: 0.4rem !important;
+                top: -33px !important;
+            }
+            .green-wire-img {
+                margin-top: -61px !important;
+                height: 36px !important;
+                margin-left: 29px !important;
+            }
         }
     </style>
 </head>
@@ -610,10 +620,10 @@
         <!-- Bulb -->
         <div class="bulb absolute -top-[74px] left-1/2 -translate-x-1/2 flex flex-col items-center z-10 bulb-container">
             <img id="bulbImage" src="assest/bulb imgae.png" class="h-[10vh] w-[16vw] transition-all duration-300 bulb-image">
-            <div class="base w-[101px] h-5 rounded-sm mt-1">
+            <div class="base w-[101px] h-5 rounded-sm mt-1 z-[0]">
                 <img src="assest/electronic base1.png" class="h-[6vh] -mt-[22px] ml-[13px] rounded-[23px] electronic-base-img">
             </div>
-            <img src="assest/green wire straight line.png" class="h-[14px] -mt-[43px] -ml-[63px]">
+            <img src="assest/green wire straight line.png" class="h-[14px] -mt-[43px] -ml-[63px] green-wire-img">
             <img src="assest/red-wire straight line.png" class="h-2 -mt-[10px] ml-[66px] red-wire-img">
         </div>
 
@@ -628,7 +638,7 @@
         <div class="wire red absolute right-[39px] -top-[33px] h-[144px] z-[5]">
             <img src="assest/red-wire.png" class="h-[29vh] -ml-[3px]">
         </div> -->
-        <div class="wire green absolute left-[64px] -top-[26px] h-[397px] w-1 bg-green-600 z-[5]"></div>
+        <div class="wire green absolute left-[64px] -top-[26px] h-[397px] w-1 bg-green-600 z-[5] green-wire-element"></div>
         <div class="wire red absolute right-[67px] -top-[27px] h-[167px] w-1 bg-red-600 z-[5] red-wire-element"></div>
 
         <!-- Circuit electrons -->
