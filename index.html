@@ -282,74 +282,89 @@
         }
 
         /* Bulb glow effect */
-       /* Bulb glow effect with yellow tint */
-#bulbImage.glow {
-    filter: brightness(2.5) saturate(2) contrast(1.2) hue-rotate(10deg) drop-shadow(0 0 30px rgb(255, 230, 0)) drop-shadow(0 0 50px rgb(255, 200, 0)) drop-shadow(0 0 70px rgba(255, 180, 0, 0.8));
-}
+        /* Bulb glow effect with yellow tint */
+        #bulbImage.glow {
+            filter: brightness(2.5) saturate(2) contrast(1.2) hue-rotate(10deg) drop-shadow(0 0 30px rgb(255, 230, 0)) drop-shadow(0 0 50px rgb(255, 200, 0)) drop-shadow(0 0 70px rgba(255, 180, 0, 0.8));
+        }
 
 
         /* Animation delays for specific elements */
-.organism.falling:nth-child(7) {  /* was 4, now 4+3=7 */
-    animation-delay: 0.5s;
-}
+        .organism.falling:nth-child(7) {
+            /* was 4, now 4+3=7 */
+            animation-delay: 0.5s;
+        }
 
-.organism.falling:nth-child(8) {  /* was 5, now 5+3=8 */
-    animation-delay: 1s;
-}
+        .organism.falling:nth-child(8) {
+            /* was 5, now 5+3=8 */
+            animation-delay: 1s;
+        }
 
-.organism.falling:nth-child(9) {  /* was 6, now 6+3=9 */
-    animation-delay: 1.5s;
-}
+        .organism.falling:nth-child(9) {
+            /* was 6, now 6+3=9 */
+            animation-delay: 1.5s;
+        }
 
-/* H+ ions - add +3 to each */
-.ion:nth-child(10) {  /* was 7, now 7+3=10 */
-    animation-delay: 6s;
-}
+        /* H+ ions - add +3 to each */
+        .ion:nth-child(10) {
+            /* was 7, now 7+3=10 */
+            animation-delay: 6s;
+        }
 
-.ion:nth-child(11) {  /* was 8, now 8+3=11 */
-    animation-delay: 6.4s;
-}
+        .ion:nth-child(11) {
+            /* was 8, now 8+3=11 */
+            animation-delay: 6.4s;
+        }
 
-.ion:nth-child(12) {  /* was 9, now 9+3=12 */
-    animation-delay: 6.8s;
-}
+        .ion:nth-child(12) {
+            /* was 9, now 9+3=12 */
+            animation-delay: 6.8s;
+        }
 
-.ion:nth-child(13) {  /* was 10, now 10+3=13 */
-    animation-delay: 7.2s;
-}
+        .ion:nth-child(13) {
+            /* was 10, now 10+3=13 */
+            animation-delay: 7.2s;
+        }
 
-.ion:nth-child(14) {  /* was 11, now 11+3=14 */
-    animation-delay: 7.6s;
-}
+        .ion:nth-child(14) {
+            /* was 11, now 11+3=14 */
+            animation-delay: 7.6s;
+        }
 
-.ion:nth-child(15) {  /* was 12, now 12+3=15 */
-    animation-delay: 8s;
-}
+        .ion:nth-child(15) {
+            /* was 12, now 12+3=15 */
+            animation-delay: 8s;
+        }
 
-/* CO2 bubbles - add +3 to each */
-.co2:nth-child(16) {  /* was 13, now 13+3=16 */
-    animation-delay: 6s;
-}
+        /* CO2 bubbles - add +3 to each */
+        .co2:nth-child(16) {
+            /* was 13, now 13+3=16 */
+            animation-delay: 6s;
+        }
 
-.co2:nth-child(17) {  /* was 14, now 14+3=17 */
-    animation-delay: 6.4s;
-}
+        .co2:nth-child(17) {
+            /* was 14, now 14+3=17 */
+            animation-delay: 6.4s;
+        }
 
-.co2:nth-child(18) {  /* was 15, now 15+3=18 */
-    animation-delay: 6.8s;
-}
+        .co2:nth-child(18) {
+            /* was 15, now 15+3=18 */
+            animation-delay: 6.8s;
+        }
 
-.co2:nth-child(19) {  /* was 16, now 16+3=19 */
-    animation-delay: 7.2s;
-}
+        .co2:nth-child(19) {
+            /* was 16, now 16+3=19 */
+            animation-delay: 7.2s;
+        }
 
-.co2:nth-child(20) {  /* was 17, now 17+3=20 */
-    animation-delay: 7.6s;
-}
+        .co2:nth-child(20) {
+            /* was 17, now 17+3=20 */
+            animation-delay: 7.6s;
+        }
 
-.co2:nth-child(21) {  /* was 18, now 18+3=21 */
-    animation-delay: 8s;
-}
+        .co2:nth-child(21) {
+            /* was 18, now 18+3=21 */
+            animation-delay: 8s;
+        }
 
 
         .e1 {
@@ -541,6 +556,26 @@
             max-width: 210%;
             height: auto;
         }
+
+        @media (max-width: 1536px) {
+            .vessel-img {
+                width: 48.1vw !important;
+                height: 57vh !important;
+            }
+
+            .parent-vessel-div {
+                height: 393px !important;
+                width: 178% !important;
+            }
+              .cathode-div {
+                margin-left: 74px !important;
+                width: 75.5% !important;
+            }
+              .soil-img {
+                height: 22.4vh !important;
+                width: 22.5vw !important;
+            }
+        }
     </style>
 </head>
 
@@ -671,8 +706,8 @@
         <h3 class="mt-52 -ml-16 text-base font-bold">Anode</h3>
 
         <!-- Vessel -->
-        <div class="vessel absolute bottom-0 w-full h-[349px] rounded-[20px]  box-border overflow-hidden z-[1]">
-            <img src="assest/empty vessel.png" class="h-[69vh] w-[37vw] -ml-[130px] -mt-[41px] custom-img">
+        <div class="vessel absolute bottom-0 w-full h-[349px] rounded-[20px]  box-border overflow-hidden z-[1] parent-vessel-div">
+            <img src="assest/empty vessel.png" class="h-[69vh] w-[37vw] -ml-[130px] -mt-[41px] custom-img vessel-img">
 
             <!-- Static bacteria already at anode -->
             <div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[30px]">
@@ -685,14 +720,14 @@
                 <img src="assest/bacteria.png" class="w-full h-full object-contain">
             </div>
             <div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[170px]">
-    <img src="assest/bacteria.png" class="w-full h-full object-contain">
-</div>
-<div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[10px]">
-    <img src="assest/bacteria.png" class="w-full h-full object-contain">
-</div>
-<div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[190px]">
-    <img src="assest/bacteria.png" class="w-full h-full object-contain">
-</div>
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
+            <div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[10px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
+            <div class="organism static absolute w-12 h-[72px] opacity-100 z-[6] bottom-[15px] left-[190px]">
+                <img src="assest/bacteria.png" class="w-full h-full object-contain">
+            </div>
 
             <!-- Falling bacteria that drop to anode -->
             <div class="organism falling absolute w-12 h-[72px] opacity-0 invisible z-[6] top-[50px] left-[50px]">
@@ -862,13 +897,13 @@
             </div>
 
             <!-- Layers -->
-            <div class="layer anode absolute bottom-[11px] h-10 bg-gray-500 z-[2] ml-[11px] w-[90%] rounded-b-[29px]">
+            <div class="layer anode absolute bottom-[11px] h-10 bg-gray-500 z-[2] ml-[11px] w-[90%] rounded-b-[29px] cathode-div">
             </div>
             <div
-                class="layer soil absolute bottom-[55px] h-[180px] bg-gradient-to-b from-[#9b5a25] to-[#5c2d0a] text-white z-[3] ml-[11px] w-[90%]">
-                <img src="assest/Gemini_Generated_Image_1keb811keb811keb.png" class="h-[28vh] w-[16.5vw]">
+                class="layer soil absolute bottom-[55px] h-[180px] bg-gradient-to-b from-[#9b5a25] to-[#5c2d0a] text-white z-[3] ml-[11px] w-[90%] cathode-div">
+                <img src="assest/Gemini_Generated_Image_1keb811keb811keb.png" class="h-[28vh] w-[16.5vw] soil-img">
             </div>
-            <div class="layer cathode absolute bottom-[240px] h-10 bg-gray-500 z-[4] ml-[11px] w-[90%]"></div>
+            <div class="layer cathode absolute bottom-[240px] h-10 bg-gray-500 z-[4] ml-[11px] w-[90%] cathode-div"></div>
         </div>
     </div>
 
