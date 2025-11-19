@@ -580,12 +580,26 @@
                 bottom: -117px !important;
             }
             .red-wire-img {
-                margin-left: 24.3rem !important;
-                margin-top: -23px !important;
+                margin-left:19.7rem !important;
+                margin-top: -29px !important;
+                height:1.3rem !important;
             }
             .red-wire-element {
-                top: -25.5px !important;
+                top: -36.5px !important;
                 right: -96px !important;
+                height: 178px !important;
+            }
+            .electronic-base-img {
+                margin-left: 84px !important;
+                margin-top: -35px !important;
+            }
+            .bulb-container {
+                top: -159px !important;
+            }
+            .bulb-image {
+                width: 22vw !important;
+                height: 20vh !important;
+                margin-left: 10rem !important;
             }
         }
     </style>
@@ -594,18 +608,18 @@
 <body class="bg-[rgb(177,185,201)] flex justify-center items-center min-h-screen font-sans">
     <div class="setup relative w-[250px] h-[420px]">
         <!-- Bulb -->
-        <div class="bulb absolute -top-[74px] left-1/2 -translate-x-1/2 flex flex-col items-center z-10">
-            <img id="bulbImage" src="assest/bulb imgae.png" class="h-[10vh] w-[16vw] transition-all duration-300">
+        <div class="bulb absolute -top-[74px] left-1/2 -translate-x-1/2 flex flex-col items-center z-10 bulb-container">
+            <img id="bulbImage" src="assest/bulb imgae.png" class="h-[10vh] w-[16vw] transition-all duration-300 bulb-image">
             <div class="base w-[101px] h-5 rounded-sm mt-1">
-                <img src="assest/electronic base1.png" class="h-[6vh] -mt-[22px] ml-[13px] rounded-[23px]">
+                <img src="assest/electronic base1.png" class="h-[6vh] -mt-[22px] ml-[13px] rounded-[23px] electronic-base-img">
             </div>
             <img src="assest/green wire straight line.png" class="h-[14px] -mt-[43px] -ml-[63px]">
             <img src="assest/red-wire straight line.png" class="h-2 -mt-[10px] ml-[66px] red-wire-img">
         </div>
 
-        <span
+        <!-- <span
             class="label electronic absolute -top-[18px] left-[95%] -translate-x-1/2 font-bold px-[5px] py-0.5 rounded text-sm">Electronic
-            Layer</span>
+            Layer</span> -->
 
         <!-- Wires -->
         <!-- <div class="wire green absolute left-[67px] -top-[50px] h-[372px] z-[5]">
