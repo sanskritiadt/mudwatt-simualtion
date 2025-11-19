@@ -557,19 +557,20 @@
             height: auto;
         }
 
-        @media (max-width: 1536px) {
+        @media (min-width: 1536px) and (max-width: 1536px) {
             .vessel-img {
-                width: 48.1vw !important;
-                height: 57vh !important;
+                width: 65.1vw !important;
+                height: 76vh !important;
+                margin-left: -260px !important;
             }
 
             .parent-vessel-div {
-                height: 393px !important;
+                height: 349px !important;
                 width: 178% !important;
             }
               .cathode-div {
-                margin-left: 74px !important;
-                width: 75.5% !important;
+                margin-left: 5px !important;
+                width: 92.5% !important;
             }
               .soil-img {
                 height: 22.4vh !important;
@@ -706,7 +707,7 @@
         <h3 class="mt-52 -ml-16 text-base font-bold">Anode</h3>
 
         <!-- Vessel -->
-        <div class="vessel absolute bottom-0 w-full h-[349px] rounded-[20px]  box-border overflow-hidden z-[1] parent-vessel-div">
+        <div class="vessel absolute bottom-0 w-full h-[349px] rounded-[20px]  box-border  z-[1] parent-vessel-div">
             <img src="assest/empty vessel.png" class="h-[69vh] w-[37vw] -ml-[130px] -mt-[41px] custom-img vessel-img">
 
             <!-- Static bacteria already at anode -->
